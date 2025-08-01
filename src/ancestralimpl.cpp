@@ -1,6 +1,6 @@
 #include "ancestralimpl.h"
 //
-AncestralImpl::AncestralImpl( QWidget * parent, Qt::WFlags f)
+AncestralImpl::AncestralImpl( QWidget * parent, Qt::WindowFlags f)
     : QMainWindow(parent, f) {
   setupUi(this);
 }
@@ -30,23 +30,23 @@ void AncestralImpl::compute(QDomElement * root,Param * param) {
 void AncestralImpl::on_actionSave_as_activated() {
   if (actionGraph->isChecked()==false) {
       QString qstr = QFileDialog::getSaveFileName(this, tr("Save output file"),".","CSV files (*.csv);;All files (*)");
-      if (qstr==NULL) return;
+      if (qstr.isNull()) return;
       QFile file(qstr);
       if ( !file.open(QIODevice::WriteOnly)) return;
       QTextStream ts( &file );
       for (int i=0;i<table->rowCount();i++)
         for (int j=0;j<table->columnCount();j++) {
             if (table->item(i,j)!=NULL) ts<<table->item(i,j)->text();
-            if (j<table->columnCount()-1) ts<<","; else ts<<endl;
+            if (j<table->columnCount()-1) ts<<","; else ts<<"\n";
           }
       file.close();
     } else {
       QString qstr = QFileDialog::getSaveFileName(this, tr("Save picture file"),".",tr("Joint Photographic Experts Group (*.jpg *.jpeg);;Windows Bitmap (*.bmp);;Portable Network Graphics (*.png);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm);;PostScript Format (*.ps);;Abode PDF Format (*.pdf)"));
-      if (qstr==NULL) return;
+      if (qstr.isNull()) return;
       if (qstr.endsWith("ps") || qstr.endsWith("pdf")) {
           QPrinter qprint;
           qprint.setOutputFileName(qstr);
-          qprint.setOrientation(QPrinter::Landscape);
+          qprint.setPageOrientation(QPageLayout::Landscape);
           drawGraph(&qprint);
           return;
         }
@@ -91,7 +91,7 @@ void AncestralImpl::drawGraph(QPaintDevice * qpd) {
   //YAxis labels
   int r=table->rowCount();
   for (int i=0;i<r;i++) {
-      painter.drawText(0,height()*(0.1+0.8*i/r),width()*0.19,height()*0.8/r,Qt::AlignRight+Qt::AlignVCenter,param->getTree()->getName(i));
+      painter.drawText(0,height()*(0.1+0.8*i/r),width()*0.19,height()*0.8/r,Qt::AlignRight,param->getTree()->getName(i));
     }
   painter.translate(width()/5.0,height()/10.0);
   painter.scale(width()*0.6,height()*0.8);

@@ -1,6 +1,6 @@
 #include "runparamimpl.h"
 //
-RunParamImpl::RunParamImpl( QWidget * parent, Qt::WFlags f) 
+RunParamImpl::RunParamImpl( QWidget * parent, Qt::WindowFlags f) 
 	: QDialog(parent, f)
 {
 	setupUi(this);
@@ -10,7 +10,7 @@ RunParamImpl::RunParamImpl( QWidget * parent, Qt::WFlags f)
 void RunParamImpl::on_BrowseButton_pressed()
 {
   QString qstr = QFileDialog::getSaveFileName(this, tr("Open File"),".","");
-  if (qstr==NULL) return;
+  if (qstr.isNull()) return;
   outfileText->setText(qstr);
 }
 

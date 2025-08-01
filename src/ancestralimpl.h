@@ -3,6 +3,8 @@
 //
 #include <QtXml>
 #include <QMainWindow>
+#include <QPrinter>
+#include <QFileDialog>
 #include "param.h"
 #include "ui_ancestral.h"
 //
@@ -10,7 +12,7 @@ class AncestralImpl : public QMainWindow, public Ui::Ancestral
 {
 Q_OBJECT
 public:
-	AncestralImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
+	AncestralImpl( QWidget * parent = 0, Qt::WindowFlags f = Qt::WindowFlags() );
 	void compute(QDomElement * root,Param * param);
 private slots:
 	void on_actionRepresent_lengths_activated();

@@ -99,7 +99,7 @@ void ParamCons::display(QPaintDevice * qpd)
   for (int i=0;i<tree->getN();i++)
     painter.drawText(QPointF(qpd->width()/10.0+x->at(i)*qpd->width()*0.7+3,qpd->height()/5.0+y->at(i)*qpd->height()*0.7+2),tree->getName(i));
   for (int i=tree->getN();i<tree->getN()*2-1;i++)
-    painter.drawText(x->at(i)*qpd->width()*0.698,y->at(i)*qpd->height()*0.7+2,qpd->width()/10.0,qpd->height()/5.0,Qt::AlignRight+Qt::AlignBottom,tree->getName(i));
+    painter.drawText(x->at(i)*qpd->width()*0.698,y->at(i)*qpd->height()*0.7+2,qpd->width()/10.0,qpd->height()/5.0,Qt::AlignRight,tree->getName(i));
   painter.translate(qpd->width()/10.0,qpd->height()/5.0);
   painter.scale(qpd->width()*0.7,qpd->height()*0.7);
   tree->display(&painter,x,y);

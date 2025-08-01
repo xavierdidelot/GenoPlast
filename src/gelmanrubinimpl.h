@@ -9,6 +9,7 @@
 #include "param.h"
 #include "tree.h"
 #include "changepointsontree.h"
+#include <QFileDialog>
 //
 
 using namespace std;
@@ -17,7 +18,7 @@ class GelmanRubinImpl : public QDialog, public Ui::GelmanRubin
 {
 Q_OBJECT
 public:
-	GelmanRubinImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
+	GelmanRubinImpl( QWidget * parent = 0, Qt::WindowFlags f = Qt::WindowFlags() );
 	void compute(Tree*,QDomDocument *,QStringList*);
 protected:
 	double test(vector< vector<double> >*data);

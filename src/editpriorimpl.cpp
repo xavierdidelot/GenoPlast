@@ -1,6 +1,6 @@
 #include "editpriorimpl.h"
 //
-EditPriorImpl::EditPriorImpl( QWidget * parent, Qt::WFlags f) 
+EditPriorImpl::EditPriorImpl( QWidget * parent, Qt::WindowFlags f) 
 	: QDialog(parent, f)
 {
 	setupUi(this);

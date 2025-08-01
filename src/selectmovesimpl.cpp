@@ -1,6 +1,6 @@
 #include "selectmovesimpl.h"
 //
-SelectMovesImpl::SelectMovesImpl( QWidget * parent, Qt::WFlags f) 
+SelectMovesImpl::SelectMovesImpl( QWidget * parent, Qt::WindowFlags f) 
 	: QDialog(parent, f)
 {
 	setupUi(this);

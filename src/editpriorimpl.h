@@ -9,7 +9,7 @@ class EditPriorImpl : public QDialog, public Ui::EditPrior
 {
 Q_OBJECT
 public:
-	EditPriorImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
+	EditPriorImpl( QWidget * parent = 0, Qt::WindowFlags f = Qt::WindowFlags() );
 	void setPrior(Prior * p);
 private slots:
 	void on_buttonBox_accepted();

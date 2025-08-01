@@ -1,6 +1,6 @@
 #include "progressimpl.h"
 //
-ProgressImpl::ProgressImpl( QWidget * parent, Qt::WFlags f) 
+ProgressImpl::ProgressImpl( QWidget * parent, Qt::WindowFlags f) 
 	: QDialog(parent, f)
 {
 	setupUi(this);

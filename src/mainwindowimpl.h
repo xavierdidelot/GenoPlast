@@ -13,11 +13,15 @@
 #include "editinitimpl.h"
 #include "power.h"
 #include <QtSvg>
+#include <QMessageBox>
+#include <QFileDialog>
+#include <QInputDialog>
+#include <QPrinter>
 //
 class MainWindowImpl : public QMainWindow, public Ui::MainWindow {
       Q_OBJECT
     public:
-      MainWindowImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
+      MainWindowImpl( QWidget * parent = 0, Qt::WindowFlags f = Qt::WindowFlags() );
       virtual ~MainWindowImpl();
     public slots:
       void run(int burnin,int additional,int thinin,QString outfile,bool randOrder);

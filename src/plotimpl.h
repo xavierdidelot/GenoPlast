@@ -6,6 +6,7 @@
 #include <QtXml>
 #include <iostream>
 #include <cmath>
+#include <QFileDialog>
 //
 
 using namespace std;
@@ -13,7 +14,7 @@ using namespace std;
 class PlotImpl : public QDialog, public Ui::Plot {
       Q_OBJECT
     public:
-      PlotImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
+      PlotImpl( QWidget * parent = 0, Qt::WindowFlags f = Qt::WindowFlags() );
       ~PlotImpl();
       void extractValuesNumCP(QDomDocument * domDoc,bool isrp);
       void extractValuesTop(QDomDocument * domDoc,bool isrp);

@@ -1,6 +1,6 @@
 #include "mainwindowimpl.h"
 //
-MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WFlags f):QMainWindow(parent, f) {
+MainWindowImpl::MainWindowImpl( QWidget * parent, Qt::WindowFlags f):QMainWindow(parent, f) {
   param=new Param();
   domDoc=NULL;
   mall=SelectMovesImpl::initMoves(NULL);
@@ -17,7 +17,7 @@ MainWindowImpl::~MainWindowImpl() {
 
 void MainWindowImpl::on_actionLoad_tree_activated() {
   QString qstr = QFileDialog::getOpenFileName(this, tr("Open File"),".","Newick file (*.nwk *.newick *.tree);;All files (*)");
-  if (qstr==NULL) return;
+  if (qstr.isNull()) return;
   delete(domDoc);
   domDoc=NULL;
   string newickfile=qstr.toStdString();
@@ -27,7 +27,7 @@ void MainWindowImpl::on_actionLoad_tree_activated() {
 
 void MainWindowImpl::on_actionLoad_binary_data_activated() {
   QString qstr = QFileDialog::getOpenFileName(this, tr("Open File"),".","");
-  if (qstr==NULL) return;
+  if (qstr.isNull()) return;
   param->setBinData(new BinData(qstr.toStdString ()));
 }
 
@@ -60,7 +60,7 @@ void MainWindowImpl::paintEvent(QPaintEvent*) {
 
 void MainWindowImpl::on_actionOpen_output_file_activated() {
   QString qstr = QFileDialog::getOpenFileName(this, tr("Open output file"),".","XML files (*.xml);;All files (*)");
-  if (qstr==NULL) return;
+  if (qstr.isNull()) return;
   openXMLFile(qstr);
 }
 
@@ -99,7 +99,7 @@ void MainWindowImpl::loadIteration() {
 void MainWindowImpl::on_actionSave_output_file_activated() {
   if (domDoc==NULL) {QMessageBox::about(0, "Information","Need some data first.");return;}
   QString qstr = QFileDialog::getSaveFileName(this, tr("Save output file"),".","XML files (*.xml);;All files (*)");
-  if (qstr==NULL) return;
+  if (qstr.isNull()) return;
   QFile file(qstr);
   if ( !file.open(QIODevice::WriteOnly)) return;
   QTextStream ts( &file );
@@ -113,7 +113,7 @@ void MainWindowImpl::on_actionExit_activated() {
 
 void MainWindowImpl::on_actionSave_picture_activated() {
   QString qstr = QFileDialog::getSaveFileName(this, tr("Save picture file"),".",tr("Joint Photographic Experts Group (*.jpg *.jpeg);;Windows Bitmap (*.bmp);;Portable Network Graphics (*.png);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm);;SVG Format (*.svg);;PostScript Format (*.ps);;Abode PDF Format (*.pdf)"));
-  if (qstr==NULL) return;
+  if (qstr.isNull()) return;
   if (qstr.endsWith("svg")) {
   	QSvgGenerator qsvg;
 	qsvg.setFileName(qstr);
@@ -124,7 +124,7 @@ void MainWindowImpl::on_actionSave_picture_activated() {
     if (qstr.endsWith("ps") || qstr.endsWith("pdf")) {
   	QPrinter qprint;
 	qprint.setOutputFileName(qstr);
-	qprint.setOrientation( QPrinter::Landscape);
+	qprint.setPageOrientation( QPageLayout::Landscape);
       param->display(&qprint);
       return;
     }
@@ -146,7 +146,7 @@ void MainWindowImpl::on_actionConsensus_activated() {
 
 void MainWindowImpl::on_actionSimulate_tree_activated() {
   bool ok;
-  int n=QInputDialog::getInteger(this,"Enter n","Enter number of isolates:",10,3,1000,1,&ok);
+  int n=QInputDialog::getInt(this,"Enter n","Enter number of isolates:",10,3,1000,1,&ok);
   if (!ok) return;
   param->setTree(new Tree(n));
   repaint();
@@ -163,7 +163,7 @@ void MainWindowImpl::on_actionSimulate_data_activated() {
 void MainWindowImpl::on_actionSave_current_activated() {
   if (param->getRp()==NULL) {QMessageBox::about(0,"Information","Nothing to save.");return;}
   QString qstr = QFileDialog::getSaveFileName(this, tr("Save current state"),".","XML files (*.xml);;All files (*)");
-  if (qstr==NULL) return;
+  if (qstr.isNull()) return;
   ofstream output;
   output.open(qstr.toStdString().data());
   param->exportXMLbegin(&output);
@@ -175,7 +175,7 @@ void MainWindowImpl::on_actionSave_current_activated() {
 void MainWindowImpl::on_actionSave_tree_activated() {
   if (param->getTree()==NULL) {QMessageBox::about(0,"Information","No tree to save.");return;}
   QString qstr = QFileDialog::getSaveFileName(this, tr("Save tree file"),".","Newick file (*.nwk *.newick *.tree);;All files (*)");
-  if (qstr==NULL) return;
+  if (qstr.isNull()) return;
   QFile file(qstr);
   if ( !file.open(QIODevice::WriteOnly)) return;
   QTextStream ts( &file );
@@ -186,7 +186,7 @@ void MainWindowImpl::on_actionSave_tree_activated() {
 void MainWindowImpl::on_actionSave_binary_data_activated() {
   if (param->getBinData()==NULL) {QMessageBox::about(0,"Information","No data to save.");return;}
   QString qstr = QFileDialog::getSaveFileName(this, tr("Save data file"),".","All files (*)");
-  if (qstr==NULL) return;
+  if (qstr.isNull()) return;
   QFile file(qstr);
   if ( !file.open(QIODevice::WriteOnly)) return;
   QTextStream ts( &file );
@@ -195,7 +195,7 @@ void MainWindowImpl::on_actionSave_binary_data_activated() {
 }
 
 void MainWindowImpl::on_actionEdit_list_of_moves_activated() {
-  SelectMovesImpl *r=new SelectMovesImpl(this,0);
+  SelectMovesImpl *r=new SelectMovesImpl(this,Qt::WindowFlags());
   r->setMall(mall);
   QObject::connect(r,SIGNAL(done(vector<Move*>*)),this,SLOT(setMall(vector<Move*>*)));
   r->show();
@@ -227,7 +227,7 @@ QMessageBox::about(0,"Help","The documentation is available online at the follow
 
 void MainWindowImpl::on_actionLoad_names_activated() {
   QString qstr = QFileDialog::getOpenFileName(this, tr("Open File"),".","All files (*)");
-  if (qstr==NULL) return;
+  if (qstr.isNull()) return;
   param->getTree()->loadNames(qstr);
   repaint();
 }
@@ -279,7 +279,7 @@ void MainWindowImpl::on_menuVisualisation_triggered(QAction* a) {
 
 void MainWindowImpl::on_actionReinitiate_random_generator_activated() {
   bool ok;
-  int n=QInputDialog::getInteger(this,"Enter seed","Enter seed for random number generator:",0,0,100000,1,&ok);
+  int n=QInputDialog::getInt(this,"Enter seed","Enter seed for random number generator:",0,0,100000,1,&ok);
   if (!ok) return;
   srand(n);
 }
@@ -312,7 +312,7 @@ void MainWindowImpl::on_actionCombine_output_files_activated()
   }
   //Save result
   QString qstr = QFileDialog::getSaveFileName(this, tr("Save output file"),".","XML files (*.xml);;All files (*)");
-  if (qstr==NULL) return;
+  if (qstr.isNull()) return;
   QFile file(qstr);
   if ( !file.open(QIODevice::WriteOnly)) return;
   QTextStream ts( &file );

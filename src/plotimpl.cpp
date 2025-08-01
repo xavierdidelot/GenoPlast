@@ -1,6 +1,6 @@
 #include "plotimpl.h"
 //
-PlotImpl::PlotImpl( QWidget * parent, Qt::WFlags f)
+PlotImpl::PlotImpl( QWidget * parent, Qt::WindowFlags f)
     : QDialog(parent, f) {
   mode=0;
   setupUi(this);
@@ -111,7 +111,7 @@ void PlotImpl::extractValuesLlhood(QDomDocument * domDoc) {
 
 void PlotImpl::on_exportButton_clicked() {
   QString qstr = QFileDialog::getSaveFileName(this, tr("Save picture file"),".",tr("Joint Photographic Experts Group (*.jpg *.jpeg);;Windows Bitmap (*.bmp);;Portable Network Graphics (*.png);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm)"));
-  if (qstr==NULL) return;
+  if (qstr.isNull()) return;
   QImage image(width(),height(),QImage::Format_RGB32);
   image.invertPixels();//Fill image in white
   if (mode==0) display_traj(&image);

@@ -1,6 +1,6 @@
 #include "gelmanrubinimpl.h"
 //
-GelmanRubinImpl::GelmanRubinImpl( QWidget * parent, Qt::WFlags f) 
+GelmanRubinImpl::GelmanRubinImpl( QWidget * parent, Qt::WindowFlags f) 
 	: QDialog(parent, f)
 {
 	setupUi(this);
@@ -107,14 +107,14 @@ void GelmanRubinImpl::on_buttonBox_rejected()
 void GelmanRubinImpl::on_exportButton_clicked()
 {
 	QString qstr = QFileDialog::getSaveFileName(this, tr("Save output file"),".","CSV files (*.csv);;All files (*)");
-	if (qstr==NULL) return;
+	if (qstr.isNull()) return;
 	QFile file(qstr);
 	if( !file.open(QIODevice::WriteOnly)) return;
 	QTextStream ts( &file );
 	for (int i=0;i<table->rowCount();i++) 
 		for (int j=0;j<table->columnCount();j++) {
 			if (table->item(i,j)!=NULL) ts<<table->item(i,j)->text();
-			if (j<table->columnCount()-1) ts<<","; else ts<<endl;
+			if (j<table->columnCount()-1) ts<<","; else ts<<"\n";
 		}
 	file.close();
 }

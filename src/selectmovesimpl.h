@@ -17,7 +17,7 @@ class SelectMovesImpl : public QDialog, public Ui::SelectMoves
 {
 Q_OBJECT
 public:
-	SelectMovesImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
+	SelectMovesImpl( QWidget * parent = 0, Qt::WindowFlags f = Qt::WindowFlags() );
 	static vector<Move*> * initMoves(Param*p);
 	void setMall(vector<Move*> * mall);
 protected:

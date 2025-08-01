@@ -1,6 +1,6 @@
 #include "editinitimpl.h"
 //
-EditInitImpl::EditInitImpl( QWidget * parent, Qt::WFlags f)
+EditInitImpl::EditInitImpl( QWidget * parent, Qt::WindowFlags f)
     : QDialog(parent, f) {
   setupUi(this);
   simu=false;
@@ -18,7 +18,7 @@ void EditInitImpl::on_buttonBox_accepted() {
   if (parentWidget()!=NULL) parentWidget()->update();
   if (simu) {
       bool ok;
-      int f=QInputDialog::getInteger(this,"Enter f","Enter number of regions:",100,0,10000,1,&ok);
+      int f=QInputDialog::getInt(this,"Enter f","Enter number of regions:",100,0,10000,1,&ok);
       if (!ok) return;
       param->unSet();
       param->simulateData(f);

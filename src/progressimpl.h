@@ -7,7 +7,7 @@ class ProgressImpl : public QDialog, public Ui::Progress
 {
 Q_OBJECT
 public:
-	ProgressImpl( QWidget * parent = 0, Qt::WFlags f = 0 );
+	ProgressImpl( QWidget * parent = 0, Qt::WindowFlags f = Qt::WindowFlags() );
 private slots:
 	void on_cancelButton_pressed();
 public slots:

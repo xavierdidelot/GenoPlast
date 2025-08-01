@@ -27,6 +27,7 @@
 #include <cassert>
 #include <QtXml>
 #include <QtGui>
+#include <QApplication>
 #include "exponential.h"
 
 /**

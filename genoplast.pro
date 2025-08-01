@@ -1,5 +1,5 @@
 TEMPLATE = app
-QT = gui core xml svg
+QT = gui core xml svg widgets printsupport
 CONFIG += qt warn_on console release
 DESTDIR = bin
 OBJECTS_DIR = build

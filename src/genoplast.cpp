@@ -1,5 +1,7 @@
 #include <QApplication>
 #include "mainwindowimpl.h"
+#include <stdio.h> 
+#include <unistd.h> 
 
 static const char * help=
   "\
@@ -22,7 +24,7 @@ int main(int argc, char *argv[])
       int burn=10000,nbit=10000,thin=10;
       bool power=false;
       bool exportC=false;
-      optind=0;
+      //optind=0;
       int c;
       while ((c = getopt (argc, argv, "x:y:z:s:vA")) != -1)
         switch (c)
