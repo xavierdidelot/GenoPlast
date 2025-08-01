@@ -15,13 +15,13 @@ public:
 	AncestralImpl( QWidget * parent = 0, Qt::WindowFlags f = Qt::WindowFlags() );
 	void compute(QDomElement * root,Param * param);
 private slots:
-	void on_actionRepresent_lengths_activated();
-	void on_actionStates_activated();
-	void on_actionEvents_activated();
-	void on_actionSave_as_activated();
-	void on_actionQuit_activated();
-	void on_actionTable_activated();
-	void on_actionGraph_activated();
+	void on_actionRepresent_lengths_triggered();
+	void on_actionStates_triggered();
+	void on_actionEvents_triggered();
+	void on_actionSave_as_triggered();
+	void on_actionQuit_triggered();
+	void on_actionTable_triggered();
+	void on_actionGraph_triggered();
 protected:    
         Param * param;
         int n;

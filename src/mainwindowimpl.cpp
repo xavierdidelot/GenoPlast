@@ -15,7 +15,7 @@ MainWindowImpl::~MainWindowImpl() {
   if (mall!=NULL) {for (unsigned int i=0;i<mall->size();i++) delete(mall->at(i));delete(mall);}
 }
 
-void MainWindowImpl::on_actionLoad_tree_activated() {
+void MainWindowImpl::on_actionLoad_tree_triggered() {
   QString qstr = QFileDialog::getOpenFileName(this, tr("Open File"),".","Newick file (*.nwk *.newick *.tree);;All files (*)");
   if (qstr.isNull()) return;
   delete(domDoc);
@@ -25,13 +25,13 @@ void MainWindowImpl::on_actionLoad_tree_activated() {
   repaint();
 }
 
-void MainWindowImpl::on_actionLoad_binary_data_activated() {
+void MainWindowImpl::on_actionLoad_binary_data_triggered() {
   QString qstr = QFileDialog::getOpenFileName(this, tr("Open File"),".","");
   if (qstr.isNull()) return;
   param->setBinData(new BinData(qstr.toStdString ()));
 }
 
-void MainWindowImpl::on_actionRun_algorithm_activated() {
+void MainWindowImpl::on_actionRun_algorithm_triggered() {
   if (param->getTree()==NULL) {QMessageBox::about(0, "Information","Need a tree first.");return;}
   RunParamImpl *r=new RunParamImpl();
   r->show();
@@ -50,7 +50,7 @@ void MainWindowImpl::run(int burnin,int additional,int thinin,QString outfile,bo
   openXMLFile(outfile);
 }
 
-void MainWindowImpl::on_actionAbout_activated() {
+void MainWindowImpl::on_actionAbout_triggered() {
   QMessageBox::about(0, "About...","This is GenoPlast version 1.0.");
 }
 
@@ -58,7 +58,7 @@ void MainWindowImpl::paintEvent(QPaintEvent*) {
   param->display(this);
 }
 
-void MainWindowImpl::on_actionOpen_output_file_activated() {
+void MainWindowImpl::on_actionOpen_output_file_triggered() {
   QString qstr = QFileDialog::getOpenFileName(this, tr("Open output file"),".","XML files (*.xml);;All files (*)");
   if (qstr.isNull()) return;
   openXMLFile(qstr);
@@ -96,7 +96,7 @@ void MainWindowImpl::loadIteration() {
   statusBar()->showMessage(tr("Iteration ")+QString::number(currentIteration));
 }
 
-void MainWindowImpl::on_actionSave_output_file_activated() {
+void MainWindowImpl::on_actionSave_output_file_triggered() {
   if (domDoc==NULL) {QMessageBox::about(0, "Information","Need some data first.");return;}
   QString qstr = QFileDialog::getSaveFileName(this, tr("Save output file"),".","XML files (*.xml);;All files (*)");
   if (qstr.isNull()) return;
@@ -107,11 +107,11 @@ void MainWindowImpl::on_actionSave_output_file_activated() {
   file.close();
 }
 
-void MainWindowImpl::on_actionExit_activated() {
+void MainWindowImpl::on_actionExit_triggered() {
   close();
 }
 
-void MainWindowImpl::on_actionSave_picture_activated() {
+void MainWindowImpl::on_actionSave_picture_triggered() {
   QString qstr = QFileDialog::getSaveFileName(this, tr("Save picture file"),".",tr("Joint Photographic Experts Group (*.jpg *.jpeg);;Windows Bitmap (*.bmp);;Portable Network Graphics (*.png);;Portable Pixmap (*.ppm);;X11 Bitmap (*.xbm *.xpm);;SVG Format (*.svg);;PostScript Format (*.ps);;Abode PDF Format (*.pdf)"));
   if (qstr.isNull()) return;
   if (qstr.endsWith("svg")) {
@@ -134,7 +134,7 @@ void MainWindowImpl::on_actionSave_picture_activated() {
   image.save(qstr);
 }
 
-void MainWindowImpl::on_actionConsensus_activated() {
+void MainWindowImpl::on_actionConsensus_triggered() {
   if (domDoc==NULL) {QMessageBox::about(0,"Information","Need some data first.");return;}
   ParamCons * paramcons=new ParamCons(param->getTree(),param->getBinData());
   for (currentIteration=1;currentIteration<=maxIteration;currentIteration++) {loadIteration();paramcons->add(param);}
@@ -144,7 +144,7 @@ void MainWindowImpl::on_actionConsensus_activated() {
   repaint();
 }
 
-void MainWindowImpl::on_actionSimulate_tree_activated() {
+void MainWindowImpl::on_actionSimulate_tree_triggered() {
   bool ok;
   int n=QInputDialog::getInt(this,"Enter n","Enter number of isolates:",10,3,1000,1,&ok);
   if (!ok) return;
@@ -152,7 +152,7 @@ void MainWindowImpl::on_actionSimulate_tree_activated() {
   repaint();
 }
 
-void MainWindowImpl::on_actionSimulate_data_activated() {
+void MainWindowImpl::on_actionSimulate_data_triggered() {
   if (param->getTree()==NULL) {QMessageBox::about(0,"Information","Need a tree first.");return;}
   EditInitImpl * edit=new EditInitImpl(this);
   edit->setParam(param);
@@ -160,7 +160,7 @@ void MainWindowImpl::on_actionSimulate_data_activated() {
   edit->show();
 }
 
-void MainWindowImpl::on_actionSave_current_activated() {
+void MainWindowImpl::on_actionSave_current_triggered() {
   if (param->getRp()==NULL) {QMessageBox::about(0,"Information","Nothing to save.");return;}
   QString qstr = QFileDialog::getSaveFileName(this, tr("Save current state"),".","XML files (*.xml);;All files (*)");
   if (qstr.isNull()) return;
@@ -172,7 +172,7 @@ void MainWindowImpl::on_actionSave_current_activated() {
   output.close();
 }
 
-void MainWindowImpl::on_actionSave_tree_activated() {
+void MainWindowImpl::on_actionSave_tree_triggered() {
   if (param->getTree()==NULL) {QMessageBox::about(0,"Information","No tree to save.");return;}
   QString qstr = QFileDialog::getSaveFileName(this, tr("Save tree file"),".","Newick file (*.nwk *.newick *.tree);;All files (*)");
   if (qstr.isNull()) return;
@@ -183,7 +183,7 @@ void MainWindowImpl::on_actionSave_tree_activated() {
   file.close();
 }
 
-void MainWindowImpl::on_actionSave_binary_data_activated() {
+void MainWindowImpl::on_actionSave_binary_data_triggered() {
   if (param->getBinData()==NULL) {QMessageBox::about(0,"Information","No data to save.");return;}
   QString qstr = QFileDialog::getSaveFileName(this, tr("Save data file"),".","All files (*)");
   if (qstr.isNull()) return;
@@ -194,7 +194,7 @@ void MainWindowImpl::on_actionSave_binary_data_activated() {
   file.close();
 }
 
-void MainWindowImpl::on_actionEdit_list_of_moves_activated() {
+void MainWindowImpl::on_actionEdit_list_of_moves_triggered() {
   SelectMovesImpl *r=new SelectMovesImpl(this,Qt::WindowFlags());
   r->setMall(mall);
   QObject::connect(r,SIGNAL(done(vector<Move*>*)),this,SLOT(setMall(vector<Move*>*)));
@@ -206,7 +206,7 @@ void MainWindowImpl::setMall(vector<Move*> * m) {
   mall=m;
 }
 
-void MainWindowImpl::on_actionGelman_Rubin_test_activated() {
+void MainWindowImpl::on_actionGelman_Rubin_test_triggered() {
   if (domDoc==NULL) {QMessageBox::about(0, "Information","Need some data first.");return;}
   QStringList files  = QFileDialog::getOpenFileNames(this, tr("Select File(s)"),".","XML files (*.xml);;All files (*)");
   if (files.size()==0) return;
@@ -215,31 +215,31 @@ void MainWindowImpl::on_actionGelman_Rubin_test_activated() {
   gr->show();
 }
 
-void MainWindowImpl::on_actionEdit_priors_activated() {
+void MainWindowImpl::on_actionEdit_priors_triggered() {
   EditPriorImpl * edit=new EditPriorImpl(this);
   edit->setPrior(param->getPrior());
   edit->show();
 }
 
-void MainWindowImpl::on_actionHelp_contents_activated() {
+void MainWindowImpl::on_actionHelp_contents_triggered() {
 QMessageBox::about(0,"Help","The documentation is available online at the following URL: http://www2.warwick.ac.uk/fac/sci/statistics/staff/research/didelot/genoplast/doc");
 }
 
-void MainWindowImpl::on_actionLoad_names_activated() {
+void MainWindowImpl::on_actionLoad_names_triggered() {
   QString qstr = QFileDialog::getOpenFileName(this, tr("Open File"),".","All files (*)");
   if (qstr.isNull()) return;
   param->getTree()->loadNames(qstr);
   repaint();
 }
 
-void MainWindowImpl::on_actionSet_initial_values_activated() {
+void MainWindowImpl::on_actionSet_initial_values_triggered() {
   if (param->getTree()==NULL) {QMessageBox::about(0, "Information","Need a tree first.");return;}
   EditInitImpl * edit=new EditInitImpl(this);
   edit->setParam(param);
   edit->show();
 }
 
-void MainWindowImpl::on_actionPower_study_activated() {
+void MainWindowImpl::on_actionPower_study_triggered() {
   Power * power=new Power();
   ProgressImpl * progress=new ProgressImpl();
   QObject::connect(power,SIGNAL(signalProgress(int)),progress,SLOT(updateProgress(int)));
@@ -277,14 +277,14 @@ void MainWindowImpl::on_menuVisualisation_triggered(QAction* a) {
   repaint();
 }
 
-void MainWindowImpl::on_actionReinitiate_random_generator_activated() {
+void MainWindowImpl::on_actionReinitiate_random_generator_triggered() {
   bool ok;
   int n=QInputDialog::getInt(this,"Enter seed","Enter seed for random number generator:",0,0,100000,1,&ok);
   if (!ok) return;
   srand(n);
 }
 
-void MainWindowImpl::on_actionAncestral_states_activated()
+void MainWindowImpl::on_actionAncestral_states_triggered()
 {
   if (domDoc==NULL) {QMessageBox::about(0, "Information","Need some data first.");return;}
   if (param->getBinData()==NULL) {QMessageBox::about(0, "Information","Need some data first.");return;}
@@ -296,7 +296,7 @@ void MainWindowImpl::on_actionAncestral_states_activated()
   a->show();
 }
 
-void MainWindowImpl::on_actionCombine_output_files_activated()
+void MainWindowImpl::on_actionCombine_output_files_triggered()
 {
   //Select files to combine
   QStringList files  = QFileDialog::getOpenFileNames(this, tr("Select File(s)"),".","XML files (*.xml);;All files (*)");
@@ -322,3 +322,5 @@ void MainWindowImpl::on_actionCombine_output_files_activated()
   //Open result
   openXMLFile(qstr);
 }
+
+

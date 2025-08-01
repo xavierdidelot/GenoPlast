@@ -13,7 +13,7 @@ void AncestralImpl::compute(QDomElement * root,Param * param) {
   QString data=list.at(0).toElement().elementsByTagName("ancstate").at(0).firstChild().toText().data();
   f=(data.count("1")+data.count("0"))/(n-1);
   vector<double> v(f*(n-1),0.0);
-  for (unsigned int i=0;i<list.length();i++) {
+  for (int i=0;i<list.length();i++) {
       QString data=list.at(i).toElement().elementsByTagName("ancstate").at(0).firstChild().toText().data();
       QTextStream in(&data);
       for (unsigned int j=0;j<v.size();j++) {in >> tmp;v[j]=v[j]+tmp/list.length();}
@@ -27,7 +27,7 @@ void AncestralImpl::compute(QDomElement * root,Param * param) {
   for (int i=0;i<2*n-1;i++) for (int j=0;j<f;j++) table->setItem(i,j,new QTableWidgetItem(QString::number(states[i][j])));
 }
 
-void AncestralImpl::on_actionSave_as_activated() {
+void AncestralImpl::on_actionSave_as_triggered() {
   if (actionGraph->isChecked()==false) {
       QString qstr = QFileDialog::getSaveFileName(this, tr("Save output file"),".","CSV files (*.csv);;All files (*)");
       if (qstr.isNull()) return;
@@ -58,18 +58,18 @@ void AncestralImpl::on_actionSave_as_activated() {
     
 }
 
-void AncestralImpl::on_actionQuit_activated() {
+void AncestralImpl::on_actionQuit_triggered() {
   close();
 }
 
-void AncestralImpl::on_actionTable_activated() {
+void AncestralImpl::on_actionTable_triggered() {
   actionTable->setChecked(true);
   actionGraph->setChecked(false);
   table->show();
   repaint();
 }
 
-void AncestralImpl::on_actionGraph_activated() {
+void AncestralImpl::on_actionGraph_triggered() {
   actionGraph->setChecked(true);
   actionTable->setChecked(false);
   table->hide();
@@ -122,9 +122,9 @@ void AncestralImpl::drawGraph(QPaintDevice * qpd) {
   painter.drawRect(QRectF(1.1,0.0,0.05,1.0));
 }
 
-void AncestralImpl::on_actionRepresent_lengths_activated() {repaint();}
+void AncestralImpl::on_actionRepresent_lengths_triggered() {repaint();}
 
-void AncestralImpl::on_actionStates_activated() {
+void AncestralImpl::on_actionStates_triggered() {
   actionStates->setChecked(true);
   actionEvents->setChecked(false);
   table->setRowCount(2*n-1);
@@ -133,7 +133,7 @@ void AncestralImpl::on_actionStates_activated() {
   repaint();
 }
 
-void AncestralImpl::on_actionEvents_activated() {
+void AncestralImpl::on_actionEvents_triggered() {
   actionEvents->setChecked(true);
   actionStates->setChecked(false);
   table->setRowCount(2*n-2);
