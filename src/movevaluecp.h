@@ -1,0 +1,42 @@
+/***************************************************************************
+ *   Copyright (C) 2008 by Xavier Didelot   *
+ *   X.Didelot@warwick.ac.uk   *
+ *                                                                         *
+ *   This program is free software; you can redistribute it and/or modify  *
+ *   it under the terms of the GNU General Public License as published by  *
+ *   the Free Software Foundation; either version 2 of the License, or     *
+ *   (at your option) any later version.                                   *
+ *                                                                         *
+ *   This program is distributed in the hope that it will be useful,       *
+ *   but WITHOUT ANY WARRANTY; without even the implied warranty of        *
+ *   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the         *
+ *   GNU General Public License for more details.                          *
+ *                                                                         *
+ *   You should have received a copy of the GNU General Public License     *
+ *   along with this program; if not, write to the                         *
+ *   Free Software Foundation, Inc.,                                       *
+ *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
+ ***************************************************************************/
+#ifndef MOVEVALUECP_H
+#define MOVEVALUECP_H
+
+#include "move.h"
+#include "changepointsontree.h"
+
+/**
+        @brief This move attempts to update the value associated with a changepoint
+	@author Xavier Didelot <X.Didelot@warwick.ac.uk>
+*/
+class MoveValueCP : public Move
+{
+public:
+    MoveValueCP(Param * p,bool rp);
+    Move * clone() {return new MoveValueCP(*this);};
+    void move();
+    ~MoveValueCP();
+    inline string desc() {if (isrp) return "Updating value in r+"; else return "Updating value in r-";}
+protected:
+    bool isrp;
+};
+
+#endif

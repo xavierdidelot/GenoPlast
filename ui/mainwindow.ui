@@ -1,0 +1,450 @@
+<ui version="4.0" >
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow" >
+  <property name="geometry" >
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>598</width>
+    <height>388</height>
+   </rect>
+  </property>
+  <property name="palette" >
+   <palette>
+    <active>
+     <colorrole role="Base" >
+      <brush brushstyle="SolidPattern" >
+       <color alpha="255" >
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window" >
+      <brush brushstyle="SolidPattern" >
+       <color alpha="255" >
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </active>
+    <inactive>
+     <colorrole role="Base" >
+      <brush brushstyle="SolidPattern" >
+       <color alpha="255" >
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window" >
+      <brush brushstyle="SolidPattern" >
+       <color alpha="255" >
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </inactive>
+    <disabled>
+     <colorrole role="Base" >
+      <brush brushstyle="SolidPattern" >
+       <color alpha="255" >
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+     <colorrole role="Window" >
+      <brush brushstyle="SolidPattern" >
+       <color alpha="255" >
+        <red>255</red>
+        <green>255</green>
+        <blue>255</blue>
+       </color>
+      </brush>
+     </colorrole>
+    </disabled>
+   </palette>
+  </property>
+  <property name="windowTitle" >
+   <string>Analysis of genome plasticity</string>
+  </property>
+  <widget class="QWidget" name="centralwidget" />
+  <widget class="QMenuBar" name="menubar" >
+   <property name="geometry" >
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>598</width>
+     <height>24</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuLoad_tree" >
+    <property name="title" >
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionLoad_tree" />
+    <addaction name="actionSave_tree" />
+    <addaction name="actionLoad_names" />
+    <addaction name="separator" />
+    <addaction name="actionLoad_binary_data" />
+    <addaction name="actionSave_binary_data" />
+    <addaction name="separator" />
+    <addaction name="actionOpen_output_file" />
+    <addaction name="actionCombine_output_files" />
+    <addaction name="actionSave_output_file" />
+    <addaction name="actionSave_current" />
+    <addaction name="separator" />
+    <addaction name="actionExit" />
+   </widget>
+   <widget class="QMenu" name="menuVisualisation" >
+    <property name="title" >
+     <string>&amp;Visualisation</string>
+    </property>
+    <addaction name="actionFirst_iteration" />
+    <addaction name="actionNext_iteration" />
+    <addaction name="actionPrevious_iteration" />
+    <addaction name="actionLast_iteration" />
+    <addaction name="separator" />
+    <addaction name="actionConsensus" />
+    <addaction name="actionAncestral_states" />
+    <addaction name="separator" />
+    <addaction name="actionScale_down" />
+    <addaction name="actionScale_up" />
+    <addaction name="separator" />
+    <addaction name="actionSave_picture" />
+   </widget>
+   <widget class="QMenu" name="menuAnalysis" >
+    <property name="title" >
+     <string>&amp;Analysis</string>
+    </property>
+    <addaction name="actionReinitiate_random_generator" />
+    <addaction name="actionSet_initial_values" />
+    <addaction name="actionEdit_list_of_moves" />
+    <addaction name="actionEdit_priors" />
+    <addaction name="separator" />
+    <addaction name="actionRun_algorithm" />
+    <addaction name="separator" />
+    <addaction name="actionGelman_Rubin_test" />
+   </widget>
+   <widget class="QMenu" name="menuHelp" >
+    <property name="title" >
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionHelp_contents" />
+    <addaction name="actionAbout" />
+   </widget>
+   <widget class="QMenu" name="menuPlot" >
+    <property name="title" >
+     <string>&amp;Graph</string>
+    </property>
+    <widget class="QMenu" name="menuNumber_of_CP_in_rp" >
+     <property name="title" >
+      <string>Number of CP in r+</string>
+     </property>
+     <addaction name="action11" />
+     <addaction name="action12" />
+    </widget>
+    <widget class="QMenu" name="menuNumber_of_CP_in_rm" >
+     <property name="title" >
+      <string>Number of CP in r-</string>
+     </property>
+     <addaction name="action21" />
+     <addaction name="action22" />
+    </widget>
+    <widget class="QMenu" name="menuTop_value_for_rp" >
+     <property name="title" >
+      <string>Top value for r+</string>
+     </property>
+     <addaction name="action31" />
+     <addaction name="action32" />
+    </widget>
+    <widget class="QMenu" name="menuTop_value_for_rm" >
+     <property name="title" >
+      <string>Top value for r-</string>
+     </property>
+     <addaction name="action41" />
+     <addaction name="action42" />
+    </widget>
+    <widget class="QMenu" name="menuLog_likelihood" >
+     <property name="title" >
+      <string>Log-likelihood</string>
+     </property>
+     <addaction name="action51" />
+     <addaction name="action52" />
+    </widget>
+    <addaction name="menuNumber_of_CP_in_rp" />
+    <addaction name="menuNumber_of_CP_in_rm" />
+    <addaction name="separator" />
+    <addaction name="menuTop_value_for_rp" />
+    <addaction name="menuTop_value_for_rm" />
+    <addaction name="separator" />
+    <addaction name="menuLog_likelihood" />
+   </widget>
+   <addaction name="menuLoad_tree" />
+   <addaction name="menuAnalysis" />
+   <addaction name="menuVisualisation" />
+   <addaction name="menuPlot" />
+   <addaction name="menuHelp" />
+  </widget>
+  <widget class="QStatusBar" name="statusbar" />
+  <action name="actionLoad_tree" >
+   <property name="text" >
+    <string>Load tree...</string>
+   </property>
+  </action>
+  <action name="actionLoad_binary_data" >
+   <property name="text" >
+    <string>Load data...</string>
+   </property>
+  </action>
+  <action name="actionRun_algorithm" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Run MCMC...</string>
+   </property>
+  </action>
+  <action name="actionAbout" >
+   <property name="text" >
+    <string>About...</string>
+   </property>
+  </action>
+  <action name="actionLoad_example_data" >
+   <property name="text" >
+    <string>Load example data</string>
+   </property>
+  </action>
+  <action name="actionNext_iteration" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Next iteration</string>
+   </property>
+   <property name="shortcut" >
+    <string>></string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionPrevious_iteration" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Previous iteration</string>
+   </property>
+   <property name="shortcut" >
+    <string>&lt;</string>
+   </property>
+   <property name="shortcutContext" >
+    <enum>Qt::ApplicationShortcut</enum>
+   </property>
+  </action>
+  <action name="actionOpen_output_file" >
+   <property name="text" >
+    <string>Open output file...</string>
+   </property>
+  </action>
+  <action name="actionSave_output_file" >
+   <property name="text" >
+    <string>Save output file...</string>
+   </property>
+  </action>
+  <action name="actionExit" >
+   <property name="text" >
+    <string>Exit</string>
+   </property>
+  </action>
+  <action name="actionSave_picture" >
+   <property name="text" >
+    <string>Save picture...</string>
+   </property>
+  </action>
+  <action name="actionConsensus" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Consensus</string>
+   </property>
+  </action>
+  <action name="actionFirst_iteration" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>First iteration</string>
+   </property>
+  </action>
+  <action name="actionLast_iteration" >
+   <property name="enabled" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Last iteration</string>
+   </property>
+  </action>
+  <action name="actionSimulate_tree" >
+   <property name="text" >
+    <string>Simulate tree...</string>
+   </property>
+  </action>
+  <action name="actionSimulate_data" >
+   <property name="text" >
+    <string>Simulate data...</string>
+   </property>
+  </action>
+  <action name="actionSave_current" >
+   <property name="text" >
+    <string>Save current state...</string>
+   </property>
+  </action>
+  <action name="actionSave_tree" >
+   <property name="text" >
+    <string>Save tree...</string>
+   </property>
+  </action>
+  <action name="actionSave_binary_data" >
+   <property name="text" >
+    <string>Save data...</string>
+   </property>
+  </action>
+  <action name="actionHelp_contents" >
+   <property name="text" >
+    <string>Help contents...</string>
+   </property>
+  </action>
+  <action name="actionEdit_list_of_moves" >
+   <property name="text" >
+    <string>Edit list of moves...</string>
+   </property>
+  </action>
+  <action name="actionGelman_Rubin_test" >
+   <property name="text" >
+    <string>Gelman-Rubin test...</string>
+   </property>
+  </action>
+  <action name="actionEdit_priors" >
+   <property name="text" >
+    <string>Edit priors...</string>
+   </property>
+  </action>
+  <action name="actionLoad_names" >
+   <property name="text" >
+    <string>Load names...</string>
+   </property>
+  </action>
+  <action name="actionScale_up" >
+   <property name="text" >
+    <string>Scale up</string>
+   </property>
+   <property name="shortcut" >
+    <string>PgUp</string>
+   </property>
+  </action>
+  <action name="actionScale_down" >
+   <property name="text" >
+    <string>Scale down</string>
+   </property>
+   <property name="shortcut" >
+    <string>PgDown</string>
+   </property>
+  </action>
+  <action name="actionSet_initial_values" >
+   <property name="text" >
+    <string>Set initial values...</string>
+   </property>
+  </action>
+  <action name="actionPower_study" >
+   <property name="text" >
+    <string>Power study...</string>
+   </property>
+  </action>
+  <action name="action11" >
+   <property name="text" >
+    <string>Trajectory</string>
+   </property>
+  </action>
+  <action name="action12" >
+   <property name="text" >
+    <string>Histogram</string>
+   </property>
+  </action>
+  <action name="action21" >
+   <property name="text" >
+    <string>Trajectory</string>
+   </property>
+  </action>
+  <action name="action22" >
+   <property name="text" >
+    <string>Histogram</string>
+   </property>
+  </action>
+  <action name="action31" >
+   <property name="text" >
+    <string>Trajectory</string>
+   </property>
+  </action>
+  <action name="action32" >
+   <property name="text" >
+    <string>Histogram</string>
+   </property>
+  </action>
+  <action name="action41" >
+   <property name="text" >
+    <string>Trajectory</string>
+   </property>
+  </action>
+  <action name="action42" >
+   <property name="text" >
+    <string>Histogram</string>
+   </property>
+  </action>
+  <action name="action51" >
+   <property name="text" >
+    <string>Trajectory</string>
+   </property>
+  </action>
+  <action name="action52" >
+   <property name="text" >
+    <string>Histogram</string>
+   </property>
+  </action>
+  <action name="actionReinitiate_random_generator" >
+   <property name="text" >
+    <string>Reinitiate random generator...</string>
+   </property>
+  </action>
+  <action name="actionAncestral_states" >
+   <property name="text" >
+    <string>Ancestral states...</string>
+   </property>
+  </action>
+  <action name="actionCombine_output_files" >
+   <property name="text" >
+    <string>Combine output files...</string>
+   </property>
+  </action>
+  <action name="actionShow_node_ids" >
+   <property name="checkable" >
+    <bool>true</bool>
+   </property>
+   <property name="text" >
+    <string>Show node ids</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
