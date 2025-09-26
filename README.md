@@ -27,16 +27,16 @@ Then use the command `make` to compile.
 
 Command line usage is as follows: 
   
-`genoplast [OPTIONS] treefile datafile outputfile`
+    genoplast [OPTIONS] treefile datafile outputfile
 
 The options are:
   
--x NUM      Sets the number of burn-in iterations (default is 10000)  
--y NUM      Sets the number of iterations after burn-in (default is 10000)  
--z NUM      Sets the number of iterations between samples (default is 10)
--s NUM      Use given seed to initial random number generator  
--A          Output ancestral states  
--v          Verbose mode
+    -x NUM      Sets the number of burn-in iterations (default is 10000)  
+    -y NUM      Sets the number of iterations after burn-in (default is 10000)  
+    -z NUM      Sets the number of iterations between samples (default is 10)
+    -s NUM      Use given seed to initial random number generator  
+    -A          Output ancestral states  
+    -v          Verbose mode
 
 ## Example
 
